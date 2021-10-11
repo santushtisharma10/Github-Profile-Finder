@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import Display from "./Display";
 
+
 export default function Profile() {
 
     const [info, setInfo] = useState([])
     const [user, setName] = useState("")
     const [repo, setRepo] = useState([])
+    const [vis, setVis] = useState(0)
+    
 
     const changeHandle = (e) => {
 
@@ -24,8 +27,6 @@ export default function Profile() {
 
 
         if (profileJson) {
-
-            console.log("working")
             const reposJson = await fetch(profileJson.repos_url).then((res) => res.json())
 
             console.log(profileJson)
@@ -33,10 +34,13 @@ export default function Profile() {
 
             setInfo(profileJson)
             setRepo(reposJson)
+            setVis(1)
+            
         }
         else {
 
             console.log("Profile Not found")
+            setVis(-1)
         }
     }
 
@@ -46,8 +50,9 @@ export default function Profile() {
                 <input type="text" name="user" placeholder="Search UserName" value={user} onChange={changeHandle} required/>
                 <button type="submit" onClick={submitHandler}>Submit</button>
             </form>
+            {console.log(vis)}
 
-            <Display user={user} info={info} repo={repo} />
+            {vis > 0 && <Display vis={vis} info={info} repo={repo} />}
         </div>
     )
 }

@@ -1,25 +1,33 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 
-export default function Display({user, info, repo}) {
+export default function Display({ vis, info, repo }) {
 
     const conSrc = "http://ghchart.rshah.org/" + info.login
-    const gitSrc = "https://github-readme-stats.vercel.app/api?username="+info.login+"&show_icons=true&theme=tokyonight"
-
-    return (
+    const gitSrc = "https://github-readme-stats.vercel.app/api?username=" + info.login + "&show_icons=true&theme=chartreuse-dark"
+    console.log("here in display")
+    return vis === 1 ?  (
         <div>
 
             <div className="row">
-                <div className="col-6-md">
+                <div className="col-3-md">
                     <img src={info.avatar_url} />
-                   <h1> {info.name} </h1>
-                   <h3> {info.login}</h3>
-                   <p>{info.bio}</p>
+                    <h1> {info.name} </h1>
+                    <h3> {info.login}</h3>
+                    <p>{info.bio}</p>
                 </div>
-                <div className="col-6-md"></div>
-                <img src={gitSrc} />
-                <img src={conSrc} alt="2016rshah's Github chart" />
+                <div className="col-3-md">
+                    <img src={gitSrc} />
+                    <img src={conSrc} alt="2016rshah's Github chart" />
+                </div>
+
             </div>
-            {/*<img src="http://ghchart.rshah.org/santushtisharma10" alt="2016rshah's Github chart" />*/}
+            
         </div>
     )
+    :  (
+        <div>
+            <h1>Profile not found</h1>
+        </div>
+    )
+    
 }
