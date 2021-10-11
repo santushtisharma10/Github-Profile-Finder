@@ -1,5 +1,27 @@
 .App {
 
   text-align: center;
+}
+.heading {
 
+  font-size: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;  
+}
+input {
+
+  border-radius: 10px;
+  padding: 10px;
+  margin: 5px;
+  width: 40%;
+  color: green;
+}
+button {
+
+  background-color: black;
+  border-radius: 10px;
+  color: white;
+  padding: 10px;
+  margin: 5px;
 }

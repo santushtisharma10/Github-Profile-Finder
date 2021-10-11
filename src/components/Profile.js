@@ -1,8 +1,8 @@
 import React, {useState} from "react";
+import Display from "./Display";
 
 export default function Profile() {
 
-    console.log("Not Working")
     const[info, setInfo] = useState([])
     const [user, setName] = useState("")
     const [repo, setRepo] = useState([])
@@ -14,9 +14,9 @@ export default function Profile() {
 
     const submitHandler = async e => {
 
-        console.log("Hello")
+    
         e.preventDefault();
-        console.log("HELOO")
+    
         const profile = await fetch("https://api.github.com/users/"+user)
         const profileJson = await profile.json()
         const repos = await fetch(profileJson.repos_url)
@@ -27,13 +27,18 @@ export default function Profile() {
             setInfo(profileJson)
             setRepo(reposJson)
         }
+        else {
+
+            <h1>Profile Not Found</h1>
+        }
     }
 
     return (
         <div>
             <input type="text" placeholder="Search UserName" value={user} onChange={changeHandle} />
             <button type="submit" onClick={submitHandler}>Submit</button>
-            <img src="http://ghchart.rshah.org/santushtisharma10" alt="2016rshah's Github chart" />
+            
+            <Display user={user} info={info} repo={repo} />
         </div>
     )
 }
