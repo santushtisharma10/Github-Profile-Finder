@@ -1,9 +1,9 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import Display from "./Display";
 
 export default function Profile() {
 
-    const[info, setInfo] = useState([])
+    const [info, setInfo] = useState([])
     const [user, setName] = useState("")
     const [repo, setRepo] = useState([])
 
@@ -14,30 +14,39 @@ export default function Profile() {
 
     const submitHandler = async e => {
 
-    
-        e.preventDefault();
-    
-        const profile = await fetch("https://api.github.com/users/"+user)
-        const profileJson = await profile.json()
-        const repos = await fetch(profileJson.repos_url)
-        const reposJson = await repos.json()
 
-        if(profileJson) {
+        e.preventDefault();
+
+        const profileJson = await fetch("https://api.github.com/users/" + user).then((res) => {
+            console.log(res.status)
+            if (res.ok) return res.json()
+        })
+
+
+        if (profileJson) {
+
+            console.log("working")
+            const reposJson = await fetch(profileJson.repos_url).then((res) => res.json())
+
+            console.log(profileJson)
+            console.log(reposJson)
 
             setInfo(profileJson)
             setRepo(reposJson)
         }
         else {
 
-            <h1>Profile Not Found</h1>
+            console.log("Profile Not found")
         }
     }
 
     return (
         <div>
-            <input type="text" placeholder="Search UserName" value={user} onChange={changeHandle} />
-            <button type="submit" onClick={submitHandler}>Submit</button>
-            
+            <form action="">
+                <input type="text" name="user" placeholder="Search UserName" value={user} onChange={changeHandle} required/>
+                <button type="submit" onClick={submitHandler}>Submit</button>
+            </form>
+
             <Display user={user} info={info} repo={repo} />
         </div>
     )
