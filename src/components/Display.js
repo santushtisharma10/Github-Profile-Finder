@@ -9,30 +9,36 @@ export default function Display({ vis, info, repo }) {
 
     return vis === 1 ? (
         <div>
+            <br /><br />
             <div className="row">
-                <div className="col-md-4" style={{backgroundColor: "pink"}}>
-                    Hello my names is Santushti sharma
-                    {/*<img src={info.avatar_url} />
-                    <h1> {info.name} </h1>
-                    <h3> {info.login}</h3>
+                <div className="col-md-4" style={{ padding: "20px" }}>
+
+                    <img src={info.avatar_url} height="80%" />
+
+                    <h1> {info.login}</h1>
                     <h5>Followers : {info.followers}</h5>
                     <h5>Following : {info.following}</h5>
-                    <p>{info.bio}</p></div>
-    */} 
-    </div>
-                <div className="col-md-4" style={{backgroundColor: "blue"}}>Testing the blue coloure{/*Repos SECTION*/}</div>
-                <div className="col-md-4" style={{backgroundColor: "red"}}>Testing the red color{/*<img src={gitSrc} />*/}</div>
+                    {/*
+    */}
+                </div>
+                <div className="col-md-2" style={{ padding: "10px" }}><h1> {info.name} </h1>
+                    <p>{info.bio}</p>Repositories</div>
+                <div className="col-md-6" style={{ padding: "10px" }}><img src={gitSrc} />
+                    <br /><br /><br /><br />
+                    <img src={conSrc} alt="2016rshah's Github chart" />
+                </div>
             </div>
             <div className="row">
+
                 {/*
                 <div className="col-md-4">
                     <a href={info.html_url} target="__blank"> <button>Visit on Github</button>
                     </a>
                 </div>
-                <div className="col-md-8"><img src={conSrc} alt="2016rshah's Github chart" /></div>
+                <div className="col-md-8"></div>
                  */}
             </div>
-            
+
 
         </div>
     )
