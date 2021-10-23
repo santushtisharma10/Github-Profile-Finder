@@ -1,3 +1,8 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 .App {
 
   text-align: center;
@@ -24,4 +29,8 @@ button {
   color: white;
   padding: 10px;
   margin: 5px;
+}
+.col-md-4 {
+
+  padding: 20px;
 }

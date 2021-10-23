@@ -27,15 +27,19 @@ export default function Profile() {
 
 
         if (profileJson) {
-            const reposJson = await fetch(profileJson.repos_url).then((res) => res.json())
+            //let len = 30, num = 1
+            //let repos = []
+           //use a loop to store all the repositories and layout to show the results
+            const reposJson = await fetch(profileJson.repos_url + "?per_page=100").then((res) => res.json())
+            console.log(reposJson)
+                
+             // for users having repositories less than or equal to 100
 
             console.log(profileJson)
-            console.log(reposJson)
-
+            
             setInfo(profileJson)
             setRepo(reposJson)
-            setVis(1)
-            
+            setVis(1)            
         }
         else {
 
