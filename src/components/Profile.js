@@ -17,6 +17,7 @@ export default function Profile() {
 
     const submitHandler = async e => {
 
+        console.log("Form working")
 
         e.preventDefault();
 
@@ -30,7 +31,7 @@ export default function Profile() {
             //let len = 30, num = 1
             //let repos = []
            //use a loop to store all the repositories and layout to show the results
-            const reposJson = await fetch(profileJson.repos_url + "?per_page=100").then((res) => res.json())
+            const reposJson = await fetch(profileJson.repos_url + "?per_page=10&sort=updated_at&order=desc").then((res) => res.json())
             console.log(reposJson)
                 
              // for users having repositories less than or equal to 100
@@ -50,13 +51,13 @@ export default function Profile() {
 
     return (
         <div>
-            <form action="">
+            <form onSubmit={submitHandler}>
                 <input type="text" name="user" placeholder="Search UserName" value={user} onChange={changeHandle} required/>
-                <button type="submit" onClick={submitHandler}>Submit</button>
+                <button type="submit">Submit</button>
             </form>
             {console.log(vis)}
 
-            {vis > 0 && <Display vis={vis} info={info} repo={repo} />}
+            {vis && <Display vis={vis} info={info} repo={repo} />}
         </div>
     )
 }
